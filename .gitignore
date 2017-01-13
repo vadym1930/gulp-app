@@ -3,6 +3,9 @@ logs
 *.log
 npm-debug.log*
 
+# Exlude compile output
+/dist
+
 # Runtime data
 pids
 *.pid
