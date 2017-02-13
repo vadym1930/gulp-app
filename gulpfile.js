@@ -4,7 +4,7 @@ const gulp = require('gulp'),
 
 //reate sourcemap, compile sass to css, add prefixes, minify css file and save into dest file
 gulp.task('css', ()=>{
-	return gulp.src(['./src/sass/style.sass'])
+	return gulp.src(['./src/sass/style.scss'])
 		.pipe(plugins.sourcemaps.init())
 		.pipe(plugins.sass({outputStyle: 'compressed'}).on('error', plugins.sass.logError))
 		.pipe(plugins.autoprefixer())
@@ -35,7 +35,7 @@ gulp.task('js', ()=>{
 
 //watch scss file changes and run css task
 gulp.task('watch', ()=> {
-	gulp.watch(['./src/sass/style.sass'], ['css']);
+	gulp.watch(['./src/sass/style.scss', './src/sass/*.scss', './src/sass/**/*.scss'], ['css']);
 	gulp.watch(['./src/js/*.js'], ['js']);
 });
 
