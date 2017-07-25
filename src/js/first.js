@@ -1,5 +1,1 @@
-$(document).ready(()=>{
-	$('h1').on('click', ()=>{
-		alert('$(this).html() ');
-	});
-});
+console.log('module 1 loaded');

@@ -1,8 +1,9 @@
 $primarycolor: lightblue;
+@import './typography/typo';
 body{
 	margin: 50px;
 	max-width: 600px;
-	background: #a9a9a9;
+	background: #f3f;
 	p {
 		background: orange;
 		border-radius: 4px;
@@ -13,7 +14,7 @@ body{
 		box-shadow: inset 2px 2px 10px black;		
 	}
 	h1 {
-		color: darkgray;
+		color: #fff;
 		text-shadow: 2px 2px 5px black;
 	}
 	img {
