@@ -71,68 +71,18 @@ gulp.task('scripts', ()=> {
 	.pipe(gulp.dest('./dist/js'))
 	.pipe(browserSync.stream());
 });
-
-// browserify("./script.js")
-//   .transform("babelify", {presets: ["es2015", "react"]})
-//   .bundle()
-//   .pipe(fs.createWriteStream("bundle.js"));
+gulp.task('views', () => {
+	return gulp.src('./src/views/*.html')
+		.pipe(plugins.rigger())
+		.pipe(gulp.dest('./dist'))
+});
 
 //watch scss file changes and run css task
 gulp.task('watch', ['css', 'views'], ()=> {
 	gulp.watch(['./src/sass/**/*.+(scss|sass)'], ['css']);
-	gulp.watch(['./src/views/**/*.mustache'], ['views']);
+	gulp.watch(['./src/views/**/*.html'], ['views']);
 	// gulp.watch(['./src/js/*/**.js'], ['scripts']);
 });
 
-//browser response to html file changes
-// gulp.task('serve', ()=>{
-// 	browserSync.init({
-// 		server:{
-// 			baseDir: './'
-// 		}
-// 	});
-// 	gulp.watch('*.html').on('change', browserSync.reload);
-// });
-
-// var ejs = require("gulp-ejs")
-//  gulp.task('views', () => {
-// 	return gulp.src("./src/views/**/*.ejs")
-// 			.pipe(ejs({ ext:'.html' }))
-// 			.pipe(gulp.dest("./dist/html"));
-//  })
-// var pug = require('gulp-pug');
- 
-// gulp.task('views', function buildHTML() {
-//   return gulp.src('./src/views/**/*.pug')
-//   .pipe(pug({
-//     // Your options in here. 
-//   }))
-// 	.pipe(gulp.dest('./dist/html'))
-// });
-// var jade = require('gulp-jade');
- 
-// gulp.task('views', function() {
-//   gulp.src('./views/**/*.jade')
-//     .pipe(jade({
-//       client: true
-//     }))
-//     .pipe(gulp.dest('./dist/html'))
-// });
-// var hogan = require('gulp-hogan');
- 
-// gulp.task('views', function(){
-//   return gulp.src('./src/views/**/*/.hogan')
-//     .pipe(hogan({handle: 'gnumanth'}))
-//     .pipe(gulp.dest('./dist/html'));
-// });
-var mustache = require("gulp-mustache");
- gulp.task('views', function(){
-gulp.src("./src/views/**/*.mustache")
-    .pipe(mustache({
-        msg: "Hello Gulp!"
-    }))
-		.pipe(plugins.rename({ extname: '.html'}))
-    .pipe(gulp.dest("./dist/html"));
-});
 //default task
 gulp.task('default', ['watch', 'watchify']);
